@@ -9,3 +9,17 @@
 #     .github/
 #             > workflows/
 #                         > jarvis-code.yml
+
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
