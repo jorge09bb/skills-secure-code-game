@@ -15,11 +15,12 @@ jobs:
       contents: read
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Check for insecure actions
         run: |
-          if grep -q "uses: dduzgun-security/secure-code-game-action@" $GITHUB_WORKSPACE/.github/workflows/jarvis-code.yml; then
+          FILE=".github/workflows/jarvis-code.yml"
+          if [ -f "$FILE" ] && grep -q "uses: dduzgun-security/secure-code-game-action@" "$FILE"; then
             echo "Insecure action detected. Please remove it from your workflow."
             exit 1
           fi
